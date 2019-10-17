@@ -6,6 +6,11 @@ class FlutterPluginSmartlink {
   static const MethodChannel _channel =
       const MethodChannel('flutter_plugin_smartlink');
 
+  static Future<String> get platformVersion async {
+    final String version = await _channel.invokeMethod('getPlatformVersion');
+    return version;
+  }
+
   static const BasicMessageChannel<dynamic> runTimer =
       const BasicMessageChannel(
           "flutter_plugin_smartlink_2_dart", StandardMessageCodec());
@@ -29,16 +34,10 @@ class FlutterPluginSmartlink {
         } else {
           print("========无data=========");
         }
-      }else{
+      } else {
         print("========无type=========$type");
       }
-
     });
-  }
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
   }
 
   static Future<bool> start(
@@ -58,9 +57,9 @@ class FlutterPluginSmartlink {
 }
 
 abstract class OnSmartLinkListener {
-  void onLinked(Mac, Ip, Id, Mid, ModuleIP) ;
+  void onLinked(Mac, Ip, Id, Mid, ModuleIP);
 
   void onCompleted();
 
-  void onTimeOut() ;
+  void onTimeOut();
 }

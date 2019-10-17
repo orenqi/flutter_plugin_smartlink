@@ -118,6 +118,7 @@ class StatelessWidgetTest extends StatelessWidget {
             ssid: ssidController.text,
             pwd: pwdController.text,
             listener1: listener);
+        print(b);
         if (b) {
           showDialog(
             context: context,
